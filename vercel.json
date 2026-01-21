@@ -1,7 +1,16 @@
 {
   "headers": [
     {
-      "source": "/Build/(.*)",
+      "source": "/Build/Web Build Disk Size.loader.js",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    },
+    {
+      "source": "/Build/Web Build Disk Size.wasm.br",
       "headers": [
         {
           "key": "Content-Type",
@@ -14,11 +23,11 @@
       ]
     },
     {
-      "source": "/Build/(.*)\\.js\\.br",
+      "source": "/Build/Web Build Disk Size.data.br",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "application/javascript"
+          "value": "application/octet-stream"
         },
         {
           "key": "Content-Encoding",
@@ -27,11 +36,11 @@
       ]
     },
     {
-      "source": "/Build/(.*)\\.data\\.br",
+      "source": "/Build/Web Build Disk Size.framework.js.br",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "application/octet-stream"
+          "value": "application/javascript"
         },
         {
           "key": "Content-Encoding",
