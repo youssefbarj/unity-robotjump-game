@@ -20,18 +20,10 @@
         justify-content: center;
         z-index: 100;
       }
-      #loading-disc {
-        width: 200px;
-        height: 200px;
-        animation: rotate 2s linear infinite;
-      }
-      @keyframes rotate {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
+      #loading-image {
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
       }
       #loading-text {
         margin-top: 20px;
@@ -46,8 +38,8 @@
     <div id="unity-container">
       <canvas id="unity-canvas" width=1280 height=720 tabindex="-1"></canvas>
       <div id="custom-loading-screen">
-        <img id="loading-disc" src="loading-disc.png" alt="Loading...">
-        <div id="loading-text">Loading...</div>
+        <img id="loading-image" src="load-0.png" alt="Loading...">
+        <div id="loading-text">Loading... 0%</div>
       </div>
       <div id="unity-warning"> </div>
     </div>
@@ -121,10 +113,25 @@
       script.src = loaderUrl;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
-          // Update loading text with percentage
+          // Update loading image and text based on percentage
+          var loadingImage = document.querySelector("#loading-image");
           var loadingText = document.querySelector("#loading-text");
+          var percentage = Math.round(progress * 100);
+
           if (loadingText) {
-            loadingText.textContent = "Loading... " + Math.round(progress * 100) + "%";
+            loadingText.textContent = "Loading... " + percentage + "%";
+          }
+
+          if (loadingImage) {
+            if (percentage < 25) {
+              loadingImage.src = "load-0.png";
+            } else if (percentage < 50) {
+              loadingImage.src = "load-25.png";
+            } else if (percentage < 99) {
+              loadingImage.src = "load-50.png";
+            } else {
+              loadingImage.src = "load-99.png";
+            }
           }
         }).then((unityInstance) => {
           loadingScreen.style.display = "none";
